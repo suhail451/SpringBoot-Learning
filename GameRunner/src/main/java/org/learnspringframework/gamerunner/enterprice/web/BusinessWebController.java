@@ -15,6 +15,16 @@ public class BusinessWebController {
     @Autowired
     private EnterpriseDataBusinessLogic enterpriceDataBusinessLogic;
 
+//    Constrctor Dependancy injection
+    public BusinessWebController(EnterpriseDataBusinessLogic enterpriceDataBusinessLogic) {
+        this.enterpriceDataBusinessLogic = enterpriceDataBusinessLogic;
+    }
+
+
+//    Setter Dependancy injection
+    public void setEnterpriceDataBusinessLogic(EnterpriseDataBusinessLogic enterpriceDataBusinessLogic) {
+        this.enterpriceDataBusinessLogic = enterpriceDataBusinessLogic;
+    }
 
     public Long showBusinessData(){
         return enterpriceDataBusinessLogic.calculateSum().longValue();

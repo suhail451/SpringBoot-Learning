@@ -11,6 +11,12 @@ public class EnterpriseDataBusinessLogic {
     @Autowired
     private EnterpriseData enterpriseData;
 
+//    Constructor Dependancy Injection
+    public EnterpriseDataBusinessLogic(EnterpriseData enterpriseData){
+        this.enterpriseData = enterpriseData;
+    }
+
+
     public Integer calculateSum(){
        List<Integer> data =  enterpriseData.getBusinessData();
        return data.stream().reduce(Integer::sum).orElse(0); // functional Programming
