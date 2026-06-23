@@ -2,7 +2,7 @@ package org.learnspringframework.springbootapplication.Data;
 
 import org.springframework.stereotype.Component;
 
-@Component
+
 public class Persons {
 
     private int id;

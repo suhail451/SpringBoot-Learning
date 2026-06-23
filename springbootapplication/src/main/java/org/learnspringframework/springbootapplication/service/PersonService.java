@@ -9,13 +9,6 @@ import java.util.List;
 @Service
 public class PersonService {
 
-
-    private final Persons persons;
-
-    public PersonService(Persons persons) {
-        this.persons = persons;
-    }
-
     public List<Persons> getAllUsers(){
         return Arrays.asList(
                 new Persons(1, "Palak", "gpalakKeeran@gmail.com", 18),

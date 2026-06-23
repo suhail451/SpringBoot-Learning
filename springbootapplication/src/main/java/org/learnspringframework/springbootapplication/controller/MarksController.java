@@ -18,8 +18,4 @@ public class MarksController {
         return marksService.getTotalMarks();
     }
 
-
-
-
-
 }
