@@ -22,7 +22,9 @@ public class PersonService {
                 new Persons(2,"Keertan", "gkeertangoswami@gmail.com", 23),
                 new Persons(2,"Rohan", "rohan@gmail.com", 12),
                 new Persons(3, "Lakesh", "lakesh@gmail.com", 15),
-                new Persons(4,"Parshant", "parshant@gmail.com", 18)
+                new Persons(4,"Parshant", "parshant@gmail.com", 18),
+                new Persons(6,"Parshant2", "parshant@gmail.com", 18),
+                new Persons(7,"Parshant3", "parshant@gmail.com", 18)
         );
     }
 
