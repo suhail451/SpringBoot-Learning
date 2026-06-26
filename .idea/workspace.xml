@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f80ad0a9-c4a1-4b9b-9edb-57de63bc1601" name="Changes" comment="Today I Learn About How A Springboot application have multiple Properties In an Application. To do multiple Configuration for Multiple enviroments">
-      <change afterPath="$PROJECT_DIR$/springbootapplication/src/main/java/org/learnspringframework/springbootapplication/Configurations/CurrencyConfigurationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springbootapplication/src/main/java/org/learnspringframework/springbootapplication/controller/CurrencyController.java" afterDir="false" />
+    <list default="true" id="f80ad0a9-c4a1-4b9b-9edb-57de63bc1601" name="Changes" comment="I learn that How The Confuguration Class Manage the Multiple Complex Configuration in An SpringBoot application and How the cobination of Configuration class With The SpringFramework Is most Powerfull for the Complex Application Configuration">
+      <change afterPath="$PROJECT_DIR$/springbootapplication/src/main/java/Important Info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/springbootapplication/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/springbootapplication/src/main/resources/application-dev.properties" afterDir="false" />
     </list>
@@ -53,10 +52,12 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.SpringbootapplicationApplication.executor": "Run",
+    "Maven.springbootapplication [clean].executor": "Run",
+    "Maven.springbootapplication [package].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
+    "RequestMappingsPanelWidth0": "559",
+    "RequestMappingsPanelWidth1": "559",
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -75,6 +76,9 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
     "run.configurations.included.in.services": "true",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
@@ -147,7 +151,8 @@
       <workItem from="1782153489415" duration="2969000" />
       <workItem from="1782217151794" duration="6176000" />
       <workItem from="1782241108638" duration="2394000" />
-      <workItem from="1782491515775" duration="1612000" />
+      <workItem from="1782491515775" duration="3535000" />
+      <workItem from="1782495863359" duration="3724000" />
     </task>
     <task id="LOCAL-00001" summary="Students And Their Certificate Management System By Hibernate ORM Tool">
       <option name="closed" value="true" />
@@ -221,7 +226,15 @@
       <option name="project" value="LOCAL" />
       <updated>1782492307616</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="I learn that How The Confuguration Class Manage the Multiple Complex Configuration in An SpringBoot application and How the cobination of Configuration class With The SpringFramework Is most Powerfull for the Complex Application Configuration">
+      <option name="closed" value="true" />
+      <created>1782493310833</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1782493310833</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,6 +250,7 @@
     <MESSAGE value="i changed the PersonService" />
     <MESSAGE value="Remove Persons @Component Because Persons Model Doesn't need any @Component to perform there work" />
     <MESSAGE value="Today I Learn About How A Springboot application have multiple Properties In an Application. To do multiple Configuration for Multiple enviroments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Today I Learn About How A Springboot application have multiple Properties In an Application. To do multiple Configuration for Multiple enviroments" />
+    <MESSAGE value="I learn that How The Confuguration Class Manage the Multiple Complex Configuration in An SpringBoot application and How the cobination of Configuration class With The SpringFramework Is most Powerfull for the Complex Application Configuration" />
+    <option name="LAST_COMMIT_MESSAGE" value="I learn that How The Confuguration Class Manage the Multiple Complex Configuration in An SpringBoot application and How the cobination of Configuration class With The SpringFramework Is most Powerfull for the Complex Application Configuration" />
   </component>
 </project>
