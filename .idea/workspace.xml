@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f80ad0a9-c4a1-4b9b-9edb-57de63bc1601" name="Changes" comment="I learn that How The Confuguration Class Manage the Multiple Complex Configuration in An SpringBoot application and How the cobination of Configuration class With The SpringFramework Is most Powerfull for the Complex Application Configuration">
-      <change afterPath="$PROJECT_DIR$/springbootapplication/src/main/java/Important Info" afterDir="false" />
+    <list default="true" id="f80ad0a9-c4a1-4b9b-9edb-57de63bc1601" name="Changes" comment="Check the Actuator for the Monitoring of the Spring boot Application">
+      <change afterPath="$PROJECT_DIR$/springbootapplication/src/main/java/org/learnspringframework/springbootapplication/Configurations/HomeConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/springbootapplication/src/main/java/org/learnspringframework/springbootapplication/controller/HomeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/springbootapplication/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/springbootapplication/src/main/resources/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/springbootapplication/src/main/resources/application-prod.properties" beforeDir="false" afterPath="$PROJECT_DIR$/springbootapplication/src/main/resources/application-prod.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,8 +58,8 @@
     "Maven.springbootapplication [package].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "559",
-    "RequestMappingsPanelWidth1": "559",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -152,7 +154,8 @@
       <workItem from="1782217151794" duration="6176000" />
       <workItem from="1782241108638" duration="2394000" />
       <workItem from="1782491515775" duration="3535000" />
-      <workItem from="1782495863359" duration="3724000" />
+      <workItem from="1782495863359" duration="4904000" />
+      <workItem from="1782539007288" duration="1941000" />
     </task>
     <task id="LOCAL-00001" summary="Students And Their Certificate Management System By Hibernate ORM Tool">
       <option name="closed" value="true" />
@@ -234,7 +237,15 @@
       <option name="project" value="LOCAL" />
       <updated>1782493310833</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Check the Actuator for the Monitoring of the Spring boot Application">
+      <option name="closed" value="true" />
+      <created>1782499901679</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1782499901680</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,6 +262,7 @@
     <MESSAGE value="Remove Persons @Component Because Persons Model Doesn't need any @Component to perform there work" />
     <MESSAGE value="Today I Learn About How A Springboot application have multiple Properties In an Application. To do multiple Configuration for Multiple enviroments" />
     <MESSAGE value="I learn that How The Confuguration Class Manage the Multiple Complex Configuration in An SpringBoot application and How the cobination of Configuration class With The SpringFramework Is most Powerfull for the Complex Application Configuration" />
-    <option name="LAST_COMMIT_MESSAGE" value="I learn that How The Confuguration Class Manage the Multiple Complex Configuration in An SpringBoot application and How the cobination of Configuration class With The SpringFramework Is most Powerfull for the Complex Application Configuration" />
+    <MESSAGE value="Check the Actuator for the Monitoring of the Spring boot Application" />
+    <option name="LAST_COMMIT_MESSAGE" value="Check the Actuator for the Monitoring of the Spring boot Application" />
   </component>
 </project>
