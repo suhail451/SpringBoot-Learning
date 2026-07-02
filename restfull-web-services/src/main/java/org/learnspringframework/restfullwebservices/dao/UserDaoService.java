@@ -16,11 +16,13 @@ public class UserDaoService {
 
     private static List<User> users = new ArrayList<>();
 
+    private static Integer countId = 0;
+
     static {
-        users.add(new User(1,"Eve", LocalDate.now().minusYears(18)));
-        users.add(new User(2,"Ali", LocalDate.now().minusYears(30)));
-        users.add(new User(3,"Rag", LocalDate.now().minusYears(13)));
-        users.add(new User(4,"John", LocalDate.now().minusYears(25)));
+        users.add(new User(++countId,"Eve", LocalDate.now().minusYears(18)));
+        users.add(new User(++countId,"Ali", LocalDate.now().minusYears(30)));
+        users.add(new User(++countId,"Rag", LocalDate.now().minusYears(13)));
+        users.add(new User(++countId,"John", LocalDate.now().minusYears(25)));
     }
 
 
@@ -45,4 +47,12 @@ public class UserDaoService {
         Predicate<? super User> predicate = user -> user.getId() == id;
         return users.stream().filter(predicate).findFirst().get();
     }
+
+    public User save(User user){
+        user.setId(++countId);
+        users.add(user);
+        return user;
+    }
+
+
 }

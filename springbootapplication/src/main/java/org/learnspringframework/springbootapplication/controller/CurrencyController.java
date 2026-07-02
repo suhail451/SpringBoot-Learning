@@ -23,7 +23,4 @@ public class CurrencyController {
     public CurrencyConfigurationService getUsers(){
         return configurationService;
     }
-
-
-
 }

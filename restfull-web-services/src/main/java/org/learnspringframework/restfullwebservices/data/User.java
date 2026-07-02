@@ -5,21 +5,21 @@ import java.time.LocalDateTime;
 
 public class User {
 
-    private int id;
+    private Integer id;
     private String name;
     private LocalDate birthdate;
 
-    public User(int id, String name, LocalDate birthdate) {
+    public User(Integer id, String name, LocalDate birthdate) {
         this.id = id;
         this.name = name;
         this.birthdate = birthdate;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
