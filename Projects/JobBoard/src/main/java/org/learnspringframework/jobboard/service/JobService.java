@@ -70,12 +70,20 @@ public class JobService {
                     .sorted(Comparator.comparing( job ->  exactMinsalary(job.getSalaryRange())))
                     .toList();
         }
+
+        if(sortBy.equalsIgnoreCase("salaryHighToLow")){
+            return jobStorage.getAllJobs()
+                    .stream()
+                    .sorted(Comparator.comparing(  (JobsPostings job) ->  exactMinsalary(job.getSalaryRange())).reversed()                    )
+                    .toList();
+        }
+
         return jobStorage.getAllJobs();
     }
 
 
     private int exactMinsalary(String salaryRange) {
-        if(salaryRange == null && salaryRange.isBlank()){
+        if(salaryRange == null || salaryRange.isBlank()){
             return 0;
         }
         String minSalary = salaryRange.split("-")[0]
