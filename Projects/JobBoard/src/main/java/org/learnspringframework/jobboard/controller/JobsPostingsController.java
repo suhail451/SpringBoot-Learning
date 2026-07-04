@@ -59,7 +59,7 @@ public class JobsPostingsController {
     public ResponseEntity<List<JobsPostings>> getJobs(
             @RequestParam(required = false) String location,
             @RequestParam(required = false) String jobType){
-//
+
         if(( location != null &&  !location.isBlank()  ) && ( jobType != null && !jobType.isBlank()   ) ){
 
             return  ResponseEntity.ok(jobService.getJobsByLocationAndType(location, jobType));
