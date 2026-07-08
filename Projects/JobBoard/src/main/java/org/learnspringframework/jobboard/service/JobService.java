@@ -1,5 +1,6 @@
 package org.learnspringframework.jobboard.service;
 
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.learnspringframework.jobboard.Data.JobsPostings;
 import org.learnspringframework.jobboard.controller.JobsPostingsController;
 import org.learnspringframework.jobboard.exceptions.InvalidJobDataException;
@@ -7,8 +8,10 @@ import org.learnspringframework.jobboard.exceptions.JobNotFoundException;
 import org.learnspringframework.jobboard.storage.JobStorage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.net.http.HttpClient;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;

@@ -1,10 +1,12 @@
 package org.learnspringframework.jobboard.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.learnspringframework.jobboard.Data.JobsPostings;
 import org.learnspringframework.jobboard.service.JobService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -50,6 +52,10 @@ public class JobsPostingsController {
                 .buildAndExpand(savedJob.getId())
                 .toUri();
 
+        if(savedJob == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+
         return ResponseEntity.created(location).build();
     }
 
@@ -65,7 +71,9 @@ public class JobsPostingsController {
     @Operation(summary = "Retrive Jobs", description = "Retrive Jobs from database, you can Search from Request perameter Location and JobType")
     @GetMapping
     public ResponseEntity<List<JobsPostings>> getJobs(
+            @Parameter(description = "location parameter")
             @RequestParam(required = false) String location,
+            @Parameter(description = "jobType parameter")
             @RequestParam(required = false) String jobType){
 
         if(( location != null &&  !location.isBlank()  ) && ( jobType != null && !jobType.isBlank()   ) ){
@@ -110,6 +118,7 @@ public class JobsPostingsController {
     @Operation(summary = "sorted Jobs", description = "→ return only sorted Jobs")
     @GetMapping("/sorted")
     public ResponseEntity<List<JobsPostings>> getJobSorted(
+            @Parameter(description = "sortBy Perameter (postedDate , salaryRange) ")
             @RequestParam(defaultValue = "postedDate") String sortBy
     ){
         return ResponseEntity.ok(jobService.getJobSorted(sortBy));
@@ -119,7 +128,7 @@ public class JobsPostingsController {
 //    Update
     @Operation(summary = "Update", description = "Update job from the job id")
     @PutMapping("/update/{id}")
-    public ResponseEntity<JobsPostings> updateJob(@PathVariable Long id ,@Valid @RequestBody JobsPostings jobsPostings){
+    public ResponseEntity<JobsPostings> updateJob( @PathVariable Long id ,@Valid @RequestBody JobsPostings jobsPostings){
            jobService.updateJob( id ,jobsPostings);
         return ResponseEntity.ok().build();
     }
