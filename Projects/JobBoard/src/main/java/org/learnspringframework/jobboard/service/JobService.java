@@ -1,9 +1,12 @@
 package org.learnspringframework.jobboard.service;
 
 import org.learnspringframework.jobboard.Data.JobsPostings;
+import org.learnspringframework.jobboard.controller.JobsPostingsController;
 import org.learnspringframework.jobboard.exceptions.InvalidJobDataException;
 import org.learnspringframework.jobboard.exceptions.JobNotFoundException;
 import org.learnspringframework.jobboard.storage.JobStorage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -15,12 +18,27 @@ public class JobService {
 
     private JobStorage jobStorage;
 
+     Logger logger = LoggerFactory.getLogger(JobService.class);
+
     public JobService(JobStorage jobStorage) {
         this.jobStorage = jobStorage;
     }
 
 
     public JobsPostings save(JobsPostings newJob) {
+        logger.debug("Creating Job -- DEBUG");
+        logger.error("Creating Job - ERROR");
+        logger.info("Creating Job --- INFO");
+        logger.trace("Creating Log for job on TRACE Level");
+
+//        OUTPUT
+        /*
+        *   2026-07-07T21:06:34.078+05:00 DEBUG 1696 --- [JobBoard] [nio-8080-exec-3] o.l.j.controller.JobsPostingsController  : Creating Job -- DEBUG
+            2026-07-07T21:06:34.078+05:00 ERROR 1696 --- [JobBoard] [nio-8080-exec-3] o.l.j.controller.JobsPostingsController  : Creating Job - ERROR
+            2026-07-07T21:06:34.078+05:00  INFO 1696 --- [JobBoard] [nio-8080-exec-3] o.l.j.controller.JobsPostingsController  : Creating Job --- INFO
+            2026-07-07T21:06:34.078+05:00 TRACE 1696 --- [JobBoard] [nio-8080-exec-3] o.l.j.controller.JobsPostingsController  : Creating Log for job on TRACE Level
+            * */
+
         validator(newJob);
         jobStorage.save(newJob);
         return newJob;
@@ -133,6 +151,14 @@ public class JobService {
                 || (newJob.getSalaryRange() == null || newJob.getSalaryRange().trim().isBlank())
                 || (newJob.getCompanyName() == null || newJob.getCompanyName().trim().isBlank())
                 || (newJob.getPostedDate().isBefore(LocalDate.now().minusDays(7)))){
+
+            if(newJob.getPostedDate().isBefore(LocalDate.now().minusDays(7))){
+                logger.info("Date Should have On 7 days in past");
+                throw new InvalidJobDataException( "Date Should have On 7 days in past" );
+            }
+
+            logger.error("Enter All Fields Must");
+
             throw new InvalidJobDataException( "Please Enter All The Fields must!" );
         }
     }

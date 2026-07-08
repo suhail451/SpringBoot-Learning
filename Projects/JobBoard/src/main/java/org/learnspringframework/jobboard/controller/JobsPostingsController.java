@@ -1,15 +1,21 @@
 package org.learnspringframework.jobboard.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.learnspringframework.jobboard.Data.JobsPostings;
 import org.learnspringframework.jobboard.service.JobService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+
 import java.net.URI;
 import java.util.List;
 
+
 @CrossOrigin(origins = "http://localhost:5173")
+@Tag(name = "Job postings", description = "APIs for managing Job Postings")
 @RestController
 @RequestMapping("jobboard/api/jobs")
 public class JobsPostingsController {
@@ -34,8 +40,9 @@ public class JobsPostingsController {
 
 //  POST   /api/jobs                 → add a new job posting
 
+    @Operation(summary = "Create Job", description = "Post api for Adding Request in Databases")
     @PostMapping
-    public ResponseEntity<JobsPostings> createNewJob(@RequestBody JobsPostings newJob){
+    public ResponseEntity<JobsPostings> createNewJob(@Valid @RequestBody JobsPostings newJob){
         JobsPostings savedJob = jobService.save(newJob);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -55,6 +62,7 @@ public class JobsPostingsController {
 //       return jobService.getAllJobs();
 //    }
 //    --------- Updated -----
+    @Operation(summary = "Retrive Jobs", description = "Retrive Jobs from database, you can Search from Request perameter Location and JobType")
     @GetMapping
     public ResponseEntity<List<JobsPostings>> getJobs(
             @RequestParam(required = false) String location,
@@ -79,6 +87,7 @@ public class JobsPostingsController {
 
 
 //      GET    /api/jobs/{id}             → return a single job by id
+    @Operation(summary = "Retrive data", description = "Get Job by jobId")
     @GetMapping("/{id}")
     public ResponseEntity<JobsPostings> getJobById(@PathVariable Long id){
       return  ResponseEntity.ok(jobService.getById(id));
@@ -91,12 +100,14 @@ public class JobsPostingsController {
 //    }   ---> Error aye gha k eik hi end point per 2 methods Call krne prh rahy hain Spring Confuse Ho raha hy
 
 //      GET    /api/jobs/active           → return only jobs where isActive = true
+    @Operation(summary = "Active Jobs", description = "→ return only jobs where isActive = true")
     @GetMapping("/active")
     public ResponseEntity<List<JobsPostings>> getOnlyActiveJobs(){
         return ResponseEntity.ok(jobService.getOnlyActiveJobs());
     }
 
 //     GET    /api/jobs/sorted           → return jobs sorted by postedDate or salary
+    @Operation(summary = "sorted Jobs", description = "→ return only sorted Jobs")
     @GetMapping("/sorted")
     public ResponseEntity<List<JobsPostings>> getJobSorted(
             @RequestParam(defaultValue = "postedDate") String sortBy
@@ -106,13 +117,15 @@ public class JobsPostingsController {
 
 
 //    Update
+    @Operation(summary = "Update", description = "Update job from the job id")
     @PutMapping("/update/{id}")
-    public ResponseEntity<JobsPostings> updateJob(@PathVariable Long id ,@RequestBody JobsPostings jobsPostings){
+    public ResponseEntity<JobsPostings> updateJob(@PathVariable Long id ,@Valid @RequestBody JobsPostings jobsPostings){
            jobService.updateJob( id ,jobsPostings);
         return ResponseEntity.ok().build();
     }
 
 //    Delete
+    @Operation(summary = "Delete", description = "delete any Job By id")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<JobsPostings> deleteJob(@PathVariable Long id){
         jobService.deleteJob(id);

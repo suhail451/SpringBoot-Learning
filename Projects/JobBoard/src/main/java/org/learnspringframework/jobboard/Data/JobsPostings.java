@@ -1,5 +1,7 @@
 package org.learnspringframework.jobboard.Data;
 
+import jakarta.validation.constraints.*;
+
 import java.time.LocalDate;
 
 public class JobsPostings {
@@ -14,13 +16,35 @@ public class JobsPostings {
 //    isActive     boolean
 
     private Long id;
+
+    @NotBlank(message = "title Field is Required")
+    @Size(min = 2, message = "Title length Should be Greater Than 2")
     private String title;
+
+    @NotBlank(message = "Job Description Field is Required")
+    @Size(min = 2, message = "Job Description length Should be Greater Than 2")
     private String jobDescription;
+
+    @NotBlank(message = "Company Name is Required")
+    @Size(min = 2, message = "Company name length Should be Greater Than 2")
     private String companyName;
+
+    @NotBlank(message = "Location is Required")
+    @Size(min = 2, message = "Location length Should be Greater Than 2")
     private String location;
+
+    @NotBlank(message = "Salary Range is Required")
+    @Size(min = 2, message = "Salary Range Should be Greater than 2")
     private String salaryRange;
+
+    @NotBlank(message = "Job Type is Required")
+    @Size(min = 2, message = "Job Type length Should be Greater Than 2")
     private String jobType;
+
+//    @NotBlank(message = "Posted Date Is Required")
+    @PastOrPresent(message = "Posting date Cannot be The Future date Please add Past Or Present Date In this Field")
     private LocalDate postedDate;
+
     private Boolean isActive;
 
 
