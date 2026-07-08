@@ -74,7 +74,7 @@ public class JobsPostingsController {
 //    public List<JobsPostings> getAllJobs(){
 //       return jobService.getAllJobs();
 //    }
-//    --------- Updated -----
+//    --------- Updated ---------
     @Operation(summary = "Retrive Jobs", description = "Retrive Jobs from database, you can Search from Request perameter Location and JobType")
     @ApiResponses({
             @ApiResponse(responseCode = "200" , description = "Working well"),
@@ -118,8 +118,8 @@ public class JobsPostingsController {
 //    public List<JobsPostings> getJobsByLocation(@RequestParam String location){
 //        return jobService.getJobsByLocation(location);
 //    }   ---> Error aye gha k eik hi end point per 2 methods Call krne prh rahy hain Spring Confuse Ho raha hy
-
 //      GET    /api/jobs/active           → return only jobs where isActive = true
+
     @Operation(summary = "Active Jobs", description = "→ return only jobs where isActive = true")
     @GetMapping("/active")
     public ResponseEntity<List<JobsPostings>> getOnlyActiveJobs(){
@@ -130,7 +130,7 @@ public class JobsPostingsController {
     @Operation(summary = "sorted Jobs", description = "→ return only sorted Jobs")
     @GetMapping("/sorted")
     public ResponseEntity<List<JobsPostings>> getJobSorted(
-            @Parameter(description = "sortBy Perameter (postedDate , salaryRange) ")
+            @Parameter(description = "sortBy Parameter (postedDate , salaryRange) ")
             @RequestParam(defaultValue = "postedDate") String sortBy
     ){
         return ResponseEntity.ok(jobService.getJobSorted(sortBy));
