@@ -2,6 +2,8 @@ package org.learnspringframework.jobboard.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.learnspringframework.jobboard.Data.JobsPostings;
@@ -43,6 +45,11 @@ public class JobsPostingsController {
 //  POST   /api/jobs                 → add a new job posting
 
     @Operation(summary = "Create Job", description = "Post api for Adding Request in Databases")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200" , description = "Working well"),
+            @ApiResponse(responseCode = "400" , description = "Invalid Input fields"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
     @PostMapping
     public ResponseEntity<JobsPostings> createNewJob(@Valid @RequestBody JobsPostings newJob){
         JobsPostings savedJob = jobService.save(newJob);
@@ -69,6 +76,11 @@ public class JobsPostingsController {
 //    }
 //    --------- Updated -----
     @Operation(summary = "Retrive Jobs", description = "Retrive Jobs from database, you can Search from Request perameter Location and JobType")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200" , description = "Working well"),
+            @ApiResponse(responseCode =  "404", description = "Job Not Found"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
     @GetMapping
     public ResponseEntity<List<JobsPostings>> getJobs(
             @Parameter(description = "location parameter")

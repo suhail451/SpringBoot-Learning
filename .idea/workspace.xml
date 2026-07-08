@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f80ad0a9-c4a1-4b9b-9edb-57de63bc1601" name="Changes" comment="Done Validation on each Feild and Show all these Apis on Swagger check that on it, and make Documentation for my Job Posting Api And handle that Exceptions.">
+    <list default="true" id="f80ad0a9-c4a1-4b9b-9edb-57de63bc1601" name="Changes" comment="Add @Operation and @Perameter where needed">
+      <change afterPath="$PROJECT_DIR$/restfull-web-services/src/main/java/org/learnspringframework/restfullwebservices/versioning/Name.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restfull-web-services/src/main/java/org/learnspringframework/restfullwebservices/versioning/NameVersioningController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restfull-web-services/src/main/java/org/learnspringframework/restfullwebservices/versioning/PersonV1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restfull-web-services/src/main/java/org/learnspringframework/restfullwebservices/versioning/PersonV2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/controller/JobsPostingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/controller/JobsPostingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/service/JobService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/service/JobService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,6 +99,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.learnspringframework.restfullwebservices.versioning" />
       <recent name="org.learnspringframework.restfullwebservices.Exceptions" />
       <recent name="org.learnspringframework.restfullwebservices.helloworld" />
     </key>
@@ -147,7 +151,7 @@
       </map>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.RestfullWebServicesApplication">
     <configuration name="GameRunnerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="GameRunner" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.learnspringframework.gamerunner.GameRunnerApplication" />
@@ -210,7 +214,8 @@
       <workItem from="1783161200399" duration="21384000" />
       <workItem from="1783436374735" duration="5274000" />
       <workItem from="1783489794563" duration="9404000" />
-      <workItem from="1783513729676" duration="4989000" />
+      <workItem from="1783513729676" duration="5086000" />
+      <workItem from="1783526295867" duration="3670000" />
     </task>
     <task id="LOCAL-00001" summary="Students And Their Certificate Management System By Hibernate ORM Tool">
       <option name="closed" value="true" />
@@ -388,7 +393,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783517039398</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Add @Operation and @Perameter where needed">
+      <option name="closed" value="true" />
+      <created>1783518817656</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1783518817656</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -428,6 +441,7 @@
     <MESSAGE value="Completed CRUD With Exception Handling" />
     <MESSAGE value="Today I learned How To override a Exception from the Exceptions and Start Validations USing @Valid and Validation Starter dependancy, jakarta.validations." />
     <MESSAGE value="Done Validation on each Feild and Show all these Apis on Swagger check that on it, and make Documentation for my Job Posting Api And handle that Exceptions." />
-    <option name="LAST_COMMIT_MESSAGE" value="Done Validation on each Feild and Show all these Apis on Swagger check that on it, and make Documentation for my Job Posting Api And handle that Exceptions." />
+    <MESSAGE value="Add @Operation and @Perameter where needed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add @Operation and @Perameter where needed" />
   </component>
 </project>
