@@ -7,6 +7,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.learnspringframework.jobboard.Data.JobsPostings;
+import org.learnspringframework.jobboard.dtos.JobRequestDto;
+import org.learnspringframework.jobboard.dtos.JobResponseDTO;
 import org.learnspringframework.jobboard.service.JobService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,7 +53,7 @@ public class JobsPostingsController {
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @PostMapping
-    public ResponseEntity<JobsPostings> createNewJob(@Valid @RequestBody JobsPostings newJob){
+    public ResponseEntity<JobRequestDto> createNewJob(@Valid @RequestBody JobRequestDto newJob){
         JobsPostings savedJob = jobService.save(newJob);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -82,7 +84,7 @@ public class JobsPostingsController {
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @GetMapping
-    public ResponseEntity<List<JobsPostings>> getJobs(
+    public ResponseEntity<List<JobResponseDTO>> getJobs(
             @Parameter(description = "location parameter")
             @RequestParam(required = false) String location,
             @Parameter(description = "jobType parameter")
@@ -109,7 +111,7 @@ public class JobsPostingsController {
 //      GET    /api/jobs/{id}             → return a single job by id
     @Operation(summary = "Retrive data", description = "Get Job by jobId")
     @GetMapping("/{id}")
-    public ResponseEntity<JobsPostings> getJobById(@PathVariable Long id){
+    public ResponseEntity<JobResponseDTO> getJobById(@PathVariable Long id){
       return  ResponseEntity.ok(jobService.getById(id));
     }
 
@@ -122,14 +124,14 @@ public class JobsPostingsController {
 
     @Operation(summary = "Active Jobs", description = "→ return only jobs where isActive = true")
     @GetMapping("/active")
-    public ResponseEntity<List<JobsPostings>> getOnlyActiveJobs(){
+    public ResponseEntity<List<JobResponseDTO>> getOnlyActiveJobs(){
         return ResponseEntity.ok(jobService.getOnlyActiveJobs());
     }
 
 //     GET    /api/jobs/sorted           → return jobs sorted by postedDate or salary
     @Operation(summary = "sorted Jobs", description = "→ return only sorted Jobs")
     @GetMapping("/sorted")
-    public ResponseEntity<List<JobsPostings>> getJobSorted(
+    public ResponseEntity<List<JobResponseDTO>> getJobSorted(
             @Parameter(description = "sortBy Parameter (postedDate , salaryRange) ")
             @RequestParam(defaultValue = "postedDate") String sortBy
     ){
@@ -140,8 +142,9 @@ public class JobsPostingsController {
 //    Update
     @Operation(summary = "Update", description = "Update job from the job id")
     @PutMapping("/update/{id}")
-    public ResponseEntity<JobsPostings> updateJob( @PathVariable Long id ,@Valid @RequestBody JobsPostings jobsPostings){
-           jobService.updateJob( id ,jobsPostings);
+    public ResponseEntity<JobRequestDto> updateJob( @PathVariable Long id ,@Valid @RequestBody JobRequestDto updatedJobRequest){
+
+           jobService.updateJob( id ,updatedJobRequest);
         return ResponseEntity.ok().build();
     }
 

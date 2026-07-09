@@ -1,17 +1,16 @@
 package org.learnspringframework.jobboard.service;
 
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import jakarta.validation.Valid;
 import org.learnspringframework.jobboard.Data.JobsPostings;
-import org.learnspringframework.jobboard.controller.JobsPostingsController;
+import org.learnspringframework.jobboard.dtos.JobRequestDto;
+import org.learnspringframework.jobboard.dtos.JobResponseDTO;
 import org.learnspringframework.jobboard.exceptions.InvalidJobDataException;
 import org.learnspringframework.jobboard.exceptions.JobNotFoundException;
 import org.learnspringframework.jobboard.storage.JobStorage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.net.http.HttpClient;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
@@ -28,7 +27,7 @@ public class JobService {
     }
 
 
-    public JobsPostings save(JobsPostings newJob) {
+    public JobsPostings save(JobRequestDto newJobRequest) {
         logger.debug("Creating Job -- DEBUG");
         logger.error("Creating Job - ERROR");
         logger.info("Creating Job --- INFO");
@@ -41,53 +40,59 @@ public class JobService {
             2026-07-07T21:06:34.078+05:00  INFO 1696 --- [JobBoard] [nio-8080-exec-3] o.l.j.controller.JobsPostingsController  : Creating Job --- INFO
             2026-07-07T21:06:34.078+05:00 TRACE 1696 --- [JobBoard] [nio-8080-exec-3] o.l.j.controller.JobsPostingsController  : Creating Log for job on TRACE Level
             * */
-
+        JobsPostings newJob =  mapToEntity(newJobRequest);
         validator(newJob);
         jobStorage.save(newJob);
         return newJob;
     }
 
 
-    public List<JobsPostings> getAllJobs() {
-        return jobStorage.getAllJobs();
+    public List<JobResponseDTO> getAllJobs() {
+        return jobStorage.getAllJobs().stream()
+                .map(this::mapToJobResponseDto)
+                .toList();
     }
 
 
-    public JobsPostings getById(Long id) {
+    public JobResponseDTO getById(Long id) {
         JobsPostings jobsPostings = jobStorage.getById(id).orElse(null);
         chackJobIfNull(id ,jobsPostings);
-        return jobsPostings;
+        return mapToJobResponseDto(jobsPostings);
     }
 
 
-    public List<JobsPostings> getJobsByLocation(String location) {
+    public List<JobResponseDTO> getJobsByLocation(String location) {
        return jobStorage.getAllJobs()
                 .stream()
                 .filter(job -> job.getLocation().equalsIgnoreCase(location))
+               .map(this::mapToJobResponseDto)
                 .toList();
     }
 
 
-    public List<JobsPostings> getJobsByType(String type) {
+    public List<JobResponseDTO> getJobsByType(String type) {
         return jobStorage.getAllJobs()
                 .stream()
                 .filter(job -> job.getJobType().equalsIgnoreCase(type))
+                .map(this::mapToJobResponseDto)
                 .toList();
     }
 
-    public List<JobsPostings> getOnlyActiveJobs() {
+    public List<JobResponseDTO> getOnlyActiveJobs() {
         return jobStorage.getAllJobs()
                 .stream()
                 .filter(job -> job.isActive())
+                .map(this::mapToJobResponseDto)
                 .toList();
     }
 
-    public List<JobsPostings> getJobSorted(String sortBy) {
+    public List<JobResponseDTO> getJobSorted(String sortBy) {
 
         if (sortBy.equalsIgnoreCase("postedDate")) {
             return jobStorage.getAllJobs()
                     .stream()
                     .sorted(Comparator.comparing(JobsPostings::getPostedDate).reversed())
+                    .map(this::mapToJobResponseDto)
                     .toList();
         }
 
@@ -95,29 +100,33 @@ public class JobService {
             return jobStorage.getAllJobs()
                     .stream()
                     .sorted(Comparator.comparing( job ->  exactMinsalary(job.getSalaryRange())))
+                    .map(this::mapToJobResponseDto)
                     .toList();
         }
 
         if(sortBy.equalsIgnoreCase("salaryHighToLow")){
             return jobStorage.getAllJobs()
                     .stream()
-                    .sorted(Comparator.comparing(  (JobsPostings job) ->  exactMinsalary(job.getSalaryRange())).reversed()                    )
+                    .sorted(Comparator.comparing(  (JobsPostings job) ->  exactMinsalary(job.getSalaryRange())).reversed())
+                    .map(this::mapToJobResponseDto)
                     .toList();
         }
-        return jobStorage.getAllJobs();
+        return  jobStorage.getAllJobs().stream().map(this::mapToJobResponseDto).toList();
     }
 
 
 
-    public List<JobsPostings> getJobsByLocationAndType(String location, String jobType) {
+    public List<JobResponseDTO> getJobsByLocationAndType(String location, String jobType) {
         return JobStorage.getAllJobs()
                 .stream()
                 .filter(job -> job.getLocation().equalsIgnoreCase(location)
                                     && job.getJobType().equalsIgnoreCase(jobType))
+                .map(this::mapToJobResponseDto)
                 .toList();
     }
 
-    public void updateJob(long id, JobsPostings newJob) {
+    public void updateJob(long id, @Valid JobRequestDto newJobRequest) {
+        JobsPostings newJob = mapToEntity(newJobRequest);
         validator(newJob);
         JobsPostings jobsPostings1 = jobStorage.getById(id).orElse(null);
         chackJobIfNull(id ,jobsPostings1);
@@ -142,6 +151,36 @@ public class JobService {
                 .replace("K", "")
                 .trim();
         return Integer.parseInt(minSalary);
+    }
+
+//    ResponseDto Mappings;
+    public JobResponseDTO mapToJobResponseDto(JobsPostings job){
+        return new JobResponseDTO(
+                job.getId(),
+                job.getTitle(),
+                job.getJobDescription(),
+                job.getCompanyName(),
+                job.getLocation(),
+                job.getSalaryRange(),
+                job.getJobType(),
+                job.getPostedDate(),
+                job.isActive()
+        );
+    }
+
+//    RequestDto Mapping
+    public JobsPostings mapToEntity(JobRequestDto job){
+        return new JobsPostings(
+                null, // Id Automatically Generate hojae ghi
+                job.getTitle(),
+                job.getJobDescription(),
+                job.getCompanyName(),
+                job.getLocation(),
+                job.getSalaryRange(),
+                job.getJobType(),
+                job.getPostedDate(),
+                job.getActive()
+        );
     }
 
 

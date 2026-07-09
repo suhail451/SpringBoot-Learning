@@ -1,19 +1,8 @@
-package org.learnspringframework.jobboard.Data;
-
-import jakarta.validation.constraints.*;
+package org.learnspringframework.jobboard.dtos;
 
 import java.time.LocalDate;
 
-public class JobsPostings {
-
-//    id           Long
-//    title        String
-//    companyName  String
-//    location     String
-//    salaryRange  String     (e.g. "80k-120k")
-//    jobType      String     (Full-time / Part-time / Remote)
-//    postedDate   LocalDate
-//    isActive     boolean
+public class JobResponseDTO {
 
     private Long id;
     private String title;
@@ -25,8 +14,16 @@ public class JobsPostings {
     private LocalDate postedDate;
     private Boolean isActive;
 
+    // Default Constructor
+    public JobResponseDTO() {
+    }
 
-    public JobsPostings(Long id, String title, String jobDescription, String companyName, String location, String salaryRange, String jobType, LocalDate postedDate, Boolean isActive) {
+    // Parameterized Constructor
+    public JobResponseDTO(Long id, String title, String jobDescription,
+                          String companyName, String location,
+                          String salaryRange, String jobType,
+                          LocalDate postedDate, Boolean isActive) {
+
         this.id = id;
         this.title = title;
         this.jobDescription = jobDescription;
@@ -102,11 +99,11 @@ public class JobsPostings {
         this.postedDate = postedDate;
     }
 
-    public Boolean isActive() {
+    public Boolean getIsActive() {
         return isActive;
     }
 
-    public void setActive(Boolean active) {
+    public void setIsActive(Boolean active) {
         isActive = active;
     }
 }

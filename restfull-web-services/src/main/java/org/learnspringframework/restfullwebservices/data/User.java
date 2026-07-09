@@ -1,11 +1,14 @@
 package org.learnspringframework.restfullwebservices.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+//@JsonIgnoreProperties({"id","birthdate"}) // static Filtering
 public class User {
 
     private Integer id;
@@ -14,6 +17,7 @@ public class User {
     private String name;
 
     @Past(message = "Birth-date Should be Past")
+    @JsonIgnore
     private LocalDate birthdate;
 
     public User(Integer id, String name, LocalDate birthdate) {

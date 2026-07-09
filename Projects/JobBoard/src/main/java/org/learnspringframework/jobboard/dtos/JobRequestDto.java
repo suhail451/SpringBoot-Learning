@@ -1,33 +1,44 @@
-package org.learnspringframework.jobboard.Data;
+package org.learnspringframework.jobboard.dtos;
 
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
-public class JobsPostings {
+public class JobRequestDto {
 
-//    id           Long
-//    title        String
-//    companyName  String
-//    location     String
-//    salaryRange  String     (e.g. "80k-120k")
-//    jobType      String     (Full-time / Part-time / Remote)
-//    postedDate   LocalDate
-//    isActive     boolean
-
-    private Long id;
+    @NotBlank(message = "title Field is Required")
+    @Size(min = 2, message = "Title length Should be Greater Than 2")
     private String title;
+
+    @NotBlank(message = "Job Description Field is Required")
+    @Size(min = 2, message = "Job Description length Should be Greater Than 2")
     private String jobDescription;
+
+    @NotBlank(message = "Company Name is Required")
+    @Size(min = 2, message = "Company name length Should be Greater Than 2")
     private String companyName;
+
+    @NotBlank(message = "Location is Required")
+    @Size(min = 2, message = "Location length Should be Greater Than 2")
     private String location;
+
+    @NotBlank(message = "Salary Range is Required")
+    @Size(min = 2, message = "Salary Range Should be Greater than 2")
     private String salaryRange;
+
+    @NotBlank(message = "Job Type is Required")
+    @Size(min = 2, message = "Job Type length Should be Greater Than 2")
     private String jobType;
+
+    //    @NotBlank(message = "Posted Date Is Required")
+    @PastOrPresent(message = "Posting date Cannot be The Future date Please add Past Or Present Date In this Field")
     private LocalDate postedDate;
+
     private Boolean isActive;
 
-
-    public JobsPostings(Long id, String title, String jobDescription, String companyName, String location, String salaryRange, String jobType, LocalDate postedDate, Boolean isActive) {
-        this.id = id;
+    public JobRequestDto(String title, String jobDescription, String companyName, String location, String salaryRange, String jobType, LocalDate postedDate, Boolean isActive) {
         this.title = title;
         this.jobDescription = jobDescription;
         this.companyName = companyName;
@@ -36,14 +47,6 @@ public class JobsPostings {
         this.jobType = jobType;
         this.postedDate = postedDate;
         this.isActive = isActive;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -102,7 +105,7 @@ public class JobsPostings {
         this.postedDate = postedDate;
     }
 
-    public Boolean isActive() {
+    public Boolean getActive() {
         return isActive;
     }
 
