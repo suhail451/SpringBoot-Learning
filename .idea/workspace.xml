@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f80ad0a9-c4a1-4b9b-9edb-57de63bc1601" name="Changes" comment="job">
-      <change afterPath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/dtos/JobRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/dtos/JobResponseDTO.java" afterDir="false" />
+    <list default="true" id="f80ad0a9-c4a1-4b9b-9edb-57de63bc1601" name="Changes" comment="make Dtos For Request and Respone, Adn Updated the classes to do work on dtos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/Data/JobsPostings.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/Data/JobsPostings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/controller/JobsPostingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/controller/JobsPostingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/service/JobService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/service/JobService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/restfull-web-services/src/main/java/org/learnspringframework/restfullwebservices/controllers/UserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/restfull-web-services/src/main/java/org/learnspringframework/restfullwebservices/controllers/UserResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/restfull-web-services/src/main/java/org/learnspringframework/restfullwebservices/data/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/restfull-web-services/src/main/java/org/learnspringframework/restfullwebservices/data/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/dtos/JobResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/dtos/JobResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/storage/JobStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/storage/JobStorage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,8 +58,8 @@
     &quot;Maven.springbootapplication [package].executor&quot;: &quot;Run&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;564&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;563&quot;,
     &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
@@ -153,7 +149,7 @@
       </map>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.RestfullWebServicesApplication">
+  <component name="RunManager" selected="Spring Boot.GameRunnerApplication">
     <configuration name="GameRunnerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="GameRunner" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.learnspringframework.gamerunner.GameRunnerApplication" />
@@ -219,7 +215,8 @@
       <workItem from="1783513729676" duration="5086000" />
       <workItem from="1783526295867" duration="5457000" />
       <workItem from="1783585266199" duration="3010000" />
-      <workItem from="1783613244567" duration="4842000" />
+      <workItem from="1783613244567" duration="4954000" />
+      <workItem from="1783658301824" duration="4602000" />
     </task>
     <task id="LOCAL-00001" summary="Students And Their Certificate Management System By Hibernate ORM Tool">
       <option name="closed" value="true" />
@@ -421,7 +418,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783534218949</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="make Dtos For Request and Respone, Adn Updated the classes to do work on dtos">
+      <option name="closed" value="true" />
+      <created>1783618191133</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1783618191134</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -439,7 +444,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Students And Their Certificate Management System By Hibernate ORM Tool" />
     <MESSAGE value="Learn Tight Coupling" />
     <MESSAGE value="Convert The Tightly Couple Project into Loosely Coupled GameRunner. Now It can run all the types Of Game Using Gamming Console Interface" />
     <MESSAGE value="I learn Some Deep In Spring FrameWork and Learn About How Spring Helps in development when There are multiple layer are here" />
@@ -464,6 +468,7 @@
     <MESSAGE value="Add @Operation and @Perameter where needed" />
     <MESSAGE value="Learn versionings and Learn how to show ApiResponse in Swagger UI" />
     <MESSAGE value="job" />
-    <option name="LAST_COMMIT_MESSAGE" value="job" />
+    <MESSAGE value="make Dtos For Request and Respone, Adn Updated the classes to do work on dtos" />
+    <option name="LAST_COMMIT_MESSAGE" value="make Dtos For Request and Respone, Adn Updated the classes to do work on dtos" />
   </component>
 </project>

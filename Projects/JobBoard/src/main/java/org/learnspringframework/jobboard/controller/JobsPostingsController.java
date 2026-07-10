@@ -76,7 +76,7 @@ public class JobsPostingsController {
 //    public List<JobsPostings> getAllJobs(){
 //       return jobService.getAllJobs();
 //    }
-//    --------- Updated ---------
+//    --------- Updated ---------   ---> Issue
     @Operation(summary = "Retrive Jobs", description = "Retrive Jobs from database, you can Search from Request perameter Location and JobType")
     @ApiResponses({
             @ApiResponse(responseCode = "200" , description = "Working well"),

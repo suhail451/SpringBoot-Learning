@@ -1,6 +1,7 @@
 package org.learnspringframework.jobboard.storage;
 
 import org.learnspringframework.jobboard.Data.JobsPostings;
+import org.learnspringframework.jobboard.exceptions.JobNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -75,7 +76,14 @@ public class JobStorage {
     }
 
     public static JobsPostings updateJob(long id, JobsPostings jobsPostings) {
-        JobsPostings jobsPostings1 = job.stream().filter(job -> job.getId().equals(id)).findFirst().get();
+        JobsPostings jobsPostings1 = job.stream()
+                .filter(job -> job.getId() != null && job.getId().equals(id))
+                .findFirst()
+                .orElseThrow( () -> new JobNotFoundException("Job Not Found by "+ id ));
+
+        jobsPostings1.setId(id);
+
+//        System.out.println(job.indexOf(jobsPostings1));
         job.add(job.indexOf(jobsPostings1), jobsPostings);
         return job.get(job.indexOf(jobsPostings1));
     }
@@ -88,7 +96,9 @@ public class JobStorage {
     }
 
     public Optional<JobsPostings> getById(Long id) {
-        return job.stream().filter(jobs -> jobs.getId().equals(id)).findFirst();
+        return Optional.of(job.stream().filter(jobs -> jobs.getId() != null && jobs.getId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new JobNotFoundException("Job Not Found By Id : " + id)));
     }
 
     public void delete(JobsPostings jobsPosting) {

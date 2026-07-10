@@ -1,10 +1,14 @@
 package org.learnspringframework.jobboard.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.LocalDate;
 
 public class JobResponseDTO {
 
+    @JsonIgnore
     private Long id;
+
     private String title;
     private String jobDescription;
     private String companyName;
