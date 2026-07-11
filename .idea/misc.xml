@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/springbootapplication/pom.xml" />
         <option value="$PROJECT_DIR$/restfull-web-services/pom.xml" />
         <option value="$PROJECT_DIR$/Projects/JobBoard/pom.xml" />
+        <option value="$PROJECT_DIR$/jpa-and-hibernate-application/pom.xml" />
       </list>
     </option>
   </component>

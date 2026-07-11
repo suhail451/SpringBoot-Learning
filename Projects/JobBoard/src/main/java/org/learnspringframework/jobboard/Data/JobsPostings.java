@@ -1,9 +1,11 @@
 package org.learnspringframework.jobboard.Data;
 
-import jakarta.validation.constraints.*;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "Jobs")
 public class JobsPostings {
 
 //    id           Long
@@ -15,14 +17,32 @@ public class JobsPostings {
 //    postedDate   LocalDate
 //    isActive     boolean
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "Job_title" , nullable = false)
     private String title;
+
+    @Column(name = "Job_Description" , nullable = false, length = 1000)
     private String jobDescription;
+
+    @Column(name = "Company_Name" , nullable = false)
     private String companyName;
+
+    @Column(name = "Location")
     private String location;
+
+    @Column(name = "Salary_Range")
     private String salaryRange;
+
+    @Column(name = "Job_Type")
     private String jobType;
+
+    @Column(name = "Posted_Date")
     private LocalDate postedDate;
+
+    @Column(name = "is_Active")
     private Boolean isActive;
 
 
@@ -36,6 +56,10 @@ public class JobsPostings {
         this.jobType = jobType;
         this.postedDate = postedDate;
         this.isActive = isActive;
+    }
+
+    public JobsPostings() {
+
     }
 
     public Long getId() {

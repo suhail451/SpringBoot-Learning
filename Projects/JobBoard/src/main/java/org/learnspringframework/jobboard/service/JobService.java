@@ -6,7 +6,7 @@ import org.learnspringframework.jobboard.dtos.JobRequestDto;
 import org.learnspringframework.jobboard.dtos.JobResponseDTO;
 import org.learnspringframework.jobboard.exceptions.InvalidJobDataException;
 import org.learnspringframework.jobboard.exceptions.JobNotFoundException;
-import org.learnspringframework.jobboard.storage.JobStorage;
+import org.learnspringframework.jobboard.repository.JobRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -18,14 +18,13 @@ import java.util.List;
 @Service
 public class JobService {
 
-    private JobStorage jobStorage;
 
-     Logger logger = LoggerFactory.getLogger(JobService.class);
+    Logger logger = LoggerFactory.getLogger(JobService.class);
+    public final JobRepository jobRepository;
 
-    public JobService(JobStorage jobStorage) {
-        this.jobStorage = jobStorage;
+    public JobService(JobRepository jobRepository) {
+        this.jobRepository = jobRepository;
     }
-
 
     public JobsPostings save(JobRequestDto newJobRequest) {
         logger.debug("Creating Job -- DEBUG");
@@ -39,49 +38,69 @@ public class JobService {
             2026-07-07T21:06:34.078+05:00 ERROR 1696 --- [JobBoard] [nio-8080-exec-3] o.l.j.controller.JobsPostingsController  : Creating Job - ERROR
             2026-07-07T21:06:34.078+05:00  INFO 1696 --- [JobBoard] [nio-8080-exec-3] o.l.j.controller.JobsPostingsController  : Creating Job --- INFO
             2026-07-07T21:06:34.078+05:00 TRACE 1696 --- [JobBoard] [nio-8080-exec-3] o.l.j.controller.JobsPostingsController  : Creating Log for job on TRACE Level
-            * */
+//            * */
         JobsPostings newJob =  mapToEntity(newJobRequest);
-        validator(newJob);
-        jobStorage.save(newJob);
+        jobRepository.save(newJob);
         return newJob;
     }
 
 
     public List<JobResponseDTO> getAllJobs() {
-        return jobStorage.getAllJobs().stream()
+        List<JobResponseDTO> allJobs = jobRepository.findAll().stream()
                 .map(this::mapToJobResponseDto)
                 .toList();
+        if(allJobs.isEmpty()){
+            throw new JobNotFoundException("Jobs are no any Jobs are available");
+        }
+        return allJobs;
     }
 
 
     public JobResponseDTO getById(Long id) {
-        JobsPostings jobsPostings = jobStorage.getById(id).orElse(null);
-        chackJobIfNull(id ,jobsPostings);
+        JobsPostings jobsPostings = jobRepository.findById(id)
+                .orElseThrow(() -> new JobNotFoundException("Job not found By id : "+ id));
         return mapToJobResponseDto(jobsPostings);
     }
 
 
     public List<JobResponseDTO> getJobsByLocation(String location) {
-       return jobStorage.getAllJobs()
+//       return jobStorage.getAllJobs()
+//                .stream()
+//                .filter(job -> job.getLocation().equalsIgnoreCase(location))
+//               .map(this::mapToJobResponseDto)
+//                .toList();
+
+        return jobRepository.findByLocationIgnoreCase(location)
                 .stream()
-                .filter(job -> job.getLocation().equalsIgnoreCase(location))
-               .map(this::mapToJobResponseDto)
+                .map(this::mapToJobResponseDto)
                 .toList();
+
     }
 
 
     public List<JobResponseDTO> getJobsByType(String type) {
-        return jobStorage.getAllJobs()
+//        return jobStorage.getAllJobs()
+//                .stream()
+//                .filter(job -> job.getJobType().equalsIgnoreCase(type))
+//                .map(this::mapToJobResponseDto)
+//                .toList();
+
+        return jobRepository.findByJobType(type)
                 .stream()
-                .filter(job -> job.getJobType().equalsIgnoreCase(type))
                 .map(this::mapToJobResponseDto)
                 .toList();
+
     }
 
     public List<JobResponseDTO> getOnlyActiveJobs() {
-        return jobStorage.getAllJobs()
+//        return jobStorage.getAllJobs()
+//                .stream()
+//                .filter(job -> job.isActive())
+//                .map(this::mapToJobResponseDto)
+//                .toList();
+
+        return jobRepository.findByIsActiveTrue()
                 .stream()
-                .filter(job -> job.isActive())
                 .map(this::mapToJobResponseDto)
                 .toList();
     }
@@ -89,7 +108,12 @@ public class JobService {
     public List<JobResponseDTO> getJobSorted(String sortBy) {
 
         if (sortBy.equalsIgnoreCase("postedDate")) {
-            return jobStorage.getAllJobs()
+//            return jobStorage.getAllJobs()
+//                    .stream()
+//                    .sorted(Comparator.comparing(JobsPostings::getPostedDate).reverse())
+//                    .map(this::mapToJobResponseDto)
+//                    .toList();
+            return jobRepository.findAll()
                     .stream()
                     .sorted(Comparator.comparing(JobsPostings::getPostedDate).reversed())
                     .map(this::mapToJobResponseDto)
@@ -97,7 +121,8 @@ public class JobService {
         }
 
         if(sortBy.equalsIgnoreCase("salary")){
-            return jobStorage.getAllJobs()
+//                    jobStorage.getAllJobs()
+            return jobRepository.findAll()
                     .stream()
                     .sorted(Comparator.comparing( job ->  exactMinsalary(job.getSalaryRange())))
                     .map(this::mapToJobResponseDto)
@@ -105,19 +130,21 @@ public class JobService {
         }
 
         if(sortBy.equalsIgnoreCase("salaryHighToLow")){
-            return jobStorage.getAllJobs()
+//            return jobStorage.getAllJobs()
+            return jobRepository.findAll()
                     .stream()
                     .sorted(Comparator.comparing(  (JobsPostings job) ->  exactMinsalary(job.getSalaryRange())).reversed())
                     .map(this::mapToJobResponseDto)
                     .toList();
         }
-        return  jobStorage.getAllJobs().stream().map(this::mapToJobResponseDto).toList();
+        return  jobRepository.findAll().stream().map(this::mapToJobResponseDto).toList();
     }
 
 
 
     public List<JobResponseDTO> getJobsByLocationAndType(String location, String jobType) {
-        return JobStorage.getAllJobs()
+//        return JobStorage.getAllJobs()
+          return jobRepository.findAll()
                 .stream()
                 .filter(job -> job.getLocation().equalsIgnoreCase(location)
                                     && job.getJobType().equalsIgnoreCase(jobType))
@@ -126,18 +153,73 @@ public class JobService {
     }
 
     public void updateJob(long id, @Valid JobRequestDto newJobRequest) {
+
+        JobsPostings jobsPostings = jobRepository.findAll()
+                .stream()
+                .filter(jobs -> jobs.getId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new JobNotFoundException("Job is Not Found By id : " + id));
+
         JobsPostings newJob = mapToEntity(newJobRequest);
-        validator(newJob);
-        JobsPostings jobsPostings1 = jobStorage.getById(id).orElse(null);
-        chackJobIfNull(id ,jobsPostings1);
-        jobStorage.updateJob(id, newJob);
+        jobRepository.save(newJob);
+
     }
 
 
     public void deleteJob(Long id) {
-        JobsPostings jobsPostings = jobStorage.getById(id).orElse(null);
+        JobsPostings jobsPostings = jobRepository.findById(id)
+                .orElseThrow(() -> new JobNotFoundException("Job not found By id : "+ id));;
         chackJobIfNull(id ,jobsPostings);
-        jobStorage.delete(jobsPostings);
+        jobRepository.deleteById(id);
+    }
+
+
+    public List<JobResponseDTO> getByCompanyName(String companyName) {
+        List<JobsPostings> byCompanyName = jobRepository.findByCompanyName(companyName);
+        if(byCompanyName.isEmpty()){
+            throw new JobNotFoundException("There Are Not any Job Available By Company : "+ companyName);
+        }
+
+        return byCompanyName.stream().map(this::mapToJobResponseDto).toList();
+    }
+
+    public List<JobResponseDTO> getJobsByLocationAndTypeAndCompanyName(String location, String jobType, String companyName) {
+        List<JobResponseDTO> byLTC = jobRepository.findAll()
+                .stream()
+                .filter(job -> job.getLocation().equalsIgnoreCase(location) && job.getJobType().equalsIgnoreCase(jobType) && job.getCompanyName().equalsIgnoreCase(companyName))
+                .map(this::mapToJobResponseDto)
+                .toList();
+
+        if(byLTC.isEmpty()){
+            throw new JobNotFoundException("job is not available in "+ location + " type of "+ jobType +" Company Name : "+ companyName );
+        }
+
+        return byLTC;
+    }
+
+
+    public List<JobResponseDTO> getByTitle(String title) {
+        List<JobResponseDTO> jobsByTitles = jobRepository.findByTitleIgnoreCase(title).stream().map(this::mapToJobResponseDto).toList();
+        if(jobsByTitles.isEmpty()){
+            throw  new JobNotFoundException( "Job not found By this Title : "+title);
+        }
+        return jobsByTitles;
+    }
+
+    public List<JobResponseDTO> getJobsByLocationAndTypeAndCompanyNameAndTitle(String location, String jobType, String companyname, String title) {
+        List<JobResponseDTO> byLTCT = jobRepository.findAll()
+                .stream()
+                .filter(job -> job.getLocation().equalsIgnoreCase(location)
+                        && job.getJobType().equalsIgnoreCase(jobType)
+                        && job.getCompanyName().equalsIgnoreCase(companyname)
+                        && job.getTitle().equalsIgnoreCase(title) )
+                .map(this::mapToJobResponseDto)
+                .toList();
+
+        if(byLTCT.isEmpty()){
+            throw new JobNotFoundException("job is not available by Title ( "+ title +" ) in "+ location + " type of "+ jobType +" Company Name : "+ companyname );
+        }
+        return byLTCT;
     }
 
 

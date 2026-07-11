@@ -84,15 +84,36 @@ public class JobsPostingsController {
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @GetMapping
-    public ResponseEntity<List<JobResponseDTO>> getJobs(
+    public  ResponseEntity<List<JobResponseDTO>> getJobs(
             @Parameter(description = "location parameter")
             @RequestParam(required = false) String location,
             @Parameter(description = "jobType parameter")
-            @RequestParam(required = false) String jobType){
+            @RequestParam(required = false) String jobType,
+            @Parameter(description = "Company name")
+            @RequestParam(required = false) String companyname,
+            @Parameter(description = "title")
+            @RequestParam(required = false) String title
+    ){
+
+        if(( location != null &&  !location.isBlank()  ) && ( jobType != null && !jobType.isBlank() && ( companyname != null && !companyname.isBlank())  && (title != null && !title.isBlank())  ) ){
+            return  ResponseEntity.ok(jobService.getJobsByLocationAndTypeAndCompanyNameAndTitle(location, jobType, companyname, title));
+        }
+
+        if(( location != null &&  !location.isBlank()  ) && ( jobType != null && !jobType.isBlank() && ( companyname != null && !companyname.isBlank())   ) ){
+            return  ResponseEntity.ok(jobService.getJobsByLocationAndTypeAndCompanyName(location, jobType, companyname));
+        }
 
         if(( location != null &&  !location.isBlank()  ) && ( jobType != null && !jobType.isBlank()   ) ){
-
             return  ResponseEntity.ok(jobService.getJobsByLocationAndType(location, jobType));
+        }
+
+
+        if(title != null && !title.isBlank()){
+            return ResponseEntity.ok(jobService.getByTitle(title));
+        }
+
+        if( companyname != null && !companyname.isBlank()){
+            return ResponseEntity.ok(jobService.getByCompanyName(companyname));
         }
 
         if( location != null &&  !location.isBlank()  ){
@@ -141,7 +162,7 @@ public class JobsPostingsController {
 
 //    Update
     @Operation(summary = "Update", description = "Update job from the job id")
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<JobRequestDto> updateJob( @PathVariable Long id ,@Valid @RequestBody JobRequestDto updatedJobRequest){
 
            jobService.updateJob( id ,updatedJobRequest);
@@ -150,11 +171,18 @@ public class JobsPostingsController {
 
 //    Delete
     @Operation(summary = "Delete", description = "delete any Job By id")
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<JobsPostings> deleteJob(@PathVariable Long id){
         jobService.deleteJob(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/company/{CompanyName}")
+    public ResponseEntity< List<JobResponseDTO>> getByCompanyName(@PathVariable String CompanyName){
+        List<JobResponseDTO> byCompanyName = jobService.getByCompanyName(CompanyName);
+        return ResponseEntity.ok().body(byCompanyName);
+    }
+
 
 
 

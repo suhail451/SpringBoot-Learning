@@ -7,12 +7,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="jpa-and-hibernate-application" />
         <module name="GameRunner" />
         <module name="JobBoard" />
         <module name="HibernateCURD" />
-        <module name="store" />
         <module name="springbootapplication" />
         <module name="restfull-web-services" />
+        <module name="store" />
       </profile>
     </annotationProcessing>
   </component>
@@ -20,6 +21,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="GameRunner" options="-parameters" />
       <module name="JobBoard" options="-parameters" />
+      <module name="jpa-and-hibernate-application" options="-parameters" />
       <module name="restfull-web-services" options="-parameters" />
       <module name="springbootapplication" options="-parameters" />
       <module name="store" options="-parameters" />

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Projects/Student and Certificate Management System/HibernateCURD.iml" filepath="$PROJECT_DIR$/Projects/Student and Certificate Management System/HibernateCURD.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Projects/JobBoard/JobBoard.iml" filepath="$PROJECT_DIR$/Projects/JobBoard/JobBoard.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/SpringBoot-Learning.iml" filepath="$PROJECT_DIR$/.idea/SpringBoot-Learning.iml" />
     </modules>
   </component>
