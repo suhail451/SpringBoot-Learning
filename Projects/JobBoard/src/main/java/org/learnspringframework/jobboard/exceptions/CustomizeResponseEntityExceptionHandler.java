@@ -23,16 +23,31 @@ public class CustomizeResponseEntityExceptionHandler extends ResponseEntityExcep
     @ExceptionHandler(value = Exception.class)
     public final ResponseEntity<ErrorDetailsPojo> HandleAllExceptions(Exception ex, WebRequest request) throws Exception{
         ErrorDetailsPojo errorDetailsPojo = new ErrorDetailsPojo(HttpStatus.INTERNAL_SERVER_ERROR.value() ,ex.getMessage(), LocalDate.now(), request.getDescription(false));
-
         return new ResponseEntity<ErrorDetailsPojo>( errorDetailsPojo ,HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(value = JobNotFoundException.class)
     public final ResponseEntity<ErrorDetailsPojo> HandleJobNotFoundException(Exception ex, WebRequest request ) throws Exception{
         ErrorDetailsPojo errorDetailsPojo = new ErrorDetailsPojo( HttpStatus.NOT_FOUND.value(), ex.getMessage(), LocalDate.now(), request.getDescription(false) );
-        logger.error("JobNotFound error is for : " , ex);
+        logger.info("JobNotFound error is for : " , ex);
         return new ResponseEntity<ErrorDetailsPojo>( errorDetailsPojo, HttpStatus.NOT_FOUND );
     }
+
+    @ExceptionHandler(value = SkillsNotFoundException.class)
+    public final ResponseEntity<ErrorDetailsPojo> HandleSkillsNotFoundException(Exception ex, WebRequest request) throws Exception{
+        ErrorDetailsPojo errorDetailsPojo = new ErrorDetailsPojo(HttpStatus.NOT_FOUND.value(), ex.getMessage(), LocalDate.now(), request.getDescription(false));
+        logger.info("SkillNotFound Exception is For : ", ex);
+        return new ResponseEntity<ErrorDetailsPojo>(errorDetailsPojo, HttpStatus.NOT_FOUND);
+    }
+
+
+    @ExceptionHandler(value = DuplicateSkillException.class)
+    public final ResponseEntity<ErrorDetailsPojo> HandleDuplicateSkillException(Exception ex, WebRequest request) throws Exception{
+        ErrorDetailsPojo errorDetailsPojo = new ErrorDetailsPojo(HttpStatus.CONTINUE.value(), ex.getMessage(), LocalDate.now(), request.getDescription(false));
+        logger.info("Skill Already Exists -- Exception : "+ ex);
+        return new ResponseEntity<ErrorDetailsPojo>(errorDetailsPojo,HttpStatus.CONFLICT);
+    }
+
 
     @ExceptionHandler(value = InvalidJobDataException.class)
     public final ResponseEntity<ErrorDetailsPojo> HandleInvalidJobDataException(Exception ex, WebRequest request) throws Exception{
@@ -43,7 +58,6 @@ public class CustomizeResponseEntityExceptionHandler extends ResponseEntityExcep
     @Override
     protected @Nullable ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-
             ErrorDetailsPojo errorDetailsPojo = new ErrorDetailsPojo(HttpStatus.METHOD_NOT_ALLOWED.value(), "Total Error : " +ex.getErrorCount() + " --> Error : "+ ex.getFieldError().getDefaultMessage(), LocalDate.now(), request.getDescription(false) );
     return new ResponseEntity(errorDetailsPojo, HttpStatus.METHOD_NOT_ALLOWED);
     }

@@ -1,6 +1,6 @@
 package org.learnspringframework.jobboard.storage;
 
-import org.learnspringframework.jobboard.Data.JobsPostings;
+import org.learnspringframework.jobboard.entities.JobsPostings;
 import org.learnspringframework.jobboard.exceptions.JobNotFoundException;
 
 import java.util.ArrayList;

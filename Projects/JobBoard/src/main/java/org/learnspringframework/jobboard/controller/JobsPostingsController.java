@@ -6,7 +6,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import org.learnspringframework.jobboard.Data.JobsPostings;
+import org.learnspringframework.jobboard.entities.JobsPostings;
 import org.learnspringframework.jobboard.dtos.JobRequestDto;
 import org.learnspringframework.jobboard.dtos.JobResponseDTO;
 import org.learnspringframework.jobboard.service.JobService;
@@ -64,10 +64,6 @@ public class JobsPostingsController {
                 .path("/{id}")
                 .buildAndExpand(savedJob.getId())
                 .toUri();
-
-        if(savedJob == null){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
 
         return ResponseEntity.created(location).build();
     }
@@ -142,7 +138,10 @@ public class JobsPostingsController {
         EntityModel<JobResponseDTO> entityModel = EntityModel.of(byId);
         WebMvcLinkBuilder linkBuilder = WebMvcLinkBuilder.linkTo(methodOn(this.getClass())
                 .getJobs("", "", "", ""));
+        WebMvcLinkBuilder linkBuilder1 = WebMvcLinkBuilder.linkTo(methodOn(SkillsController.class).getAllSkills());
+
         entityModel.add(linkBuilder.withRel("all-users"));
+        entityModel.add(linkBuilder1.withRel("all-skills"));
 
         return  ResponseEntity.ok(entityModel);
     }

@@ -94,3 +94,14 @@ VALUES
     ('Academic Coordinator', 'Coordinate curriculum delivery, teacher schedules, assessments, and academic quality standards.', 'Learning Bridge', 'Karachi', '70k-120k', 'Full-time', CURRENT_DATE, TRUE),
     ('Legal Advisor', 'Review contracts, provide legal guidance, manage compliance matters, and support dispute resolution.', 'LegalPoint Consultants', 'Islamabad', '120k-230k', 'Full-time', CURRENT_DATE, TRUE),
     ('Administrative Officer', 'Manage office records, correspondence, supplies, schedules, and coordination between departments.', 'AdminWorks', 'Karachi', '45k-80k', 'Full-time', CURRENT_DATE, TRUE);
+
+
+INSERT INTO skill (skill_name)
+VALUES
+    ('Java'),
+    ('Spring Boot'),
+    ('MySQL'),
+    ('REST API'),
+    ('Hibernate'),
+    ('Git'),
+    ('Docker');

@@ -1,4 +1,4 @@
-package org.learnspringframework.jobboard.Data;
+package org.learnspringframework.jobboard.entities;
 
 import jakarta.persistence.*;
 

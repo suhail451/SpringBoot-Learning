@@ -16,7 +16,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/users")
 public class UserResource {
 
 
@@ -29,7 +29,7 @@ public class UserResource {
 
     //    Get all Users / Retrive all Users.
 
-    @GetMapping("/users")
+    @GetMapping
     public List<UserJpa> getAllUsers(){
         return userService.findAll();
     }
@@ -41,7 +41,7 @@ public class UserResource {
 //    EntityModel
 //    WebMvcLinkBuilder
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/{id}")
     public EntityModel<UserJpa> getUser(@PathVariable Long id){
         UserJpa user = userService.findOne(id);
 
@@ -62,14 +62,14 @@ public class UserResource {
 
 //    DeleteMapping
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/{id}")
     public  ResponseEntity<UserJpa> deleteUser(@PathVariable Long id){
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
 
     //    Save the data
-    @PostMapping("/users")
+    @PostMapping
     public ResponseEntity<UserJpa> createUser(@Valid @RequestBody UserJpa user ){
         UserJpa savedUser = userService.saveUser(user);
 

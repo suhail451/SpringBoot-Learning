@@ -1,4 +1,4 @@
-INSERT INTO Users(name, birthdate) VALUES ('Keertan', '2004-06-19'),
+INSERT INTO users(name, birthdate) VALUES ('Keertan', '2004-06-19'),
                                        ('Palak', '2007-02-02'),
                                        ('Ayesha', '2003-09-15'),
                                        ('Ali', '2002-12-08'),
@@ -14,7 +14,7 @@ INSERT INTO Users(name, birthdate) VALUES ('Keertan', '2004-06-19'),
                                        ('Danish', '2004-02-11'),
                                        ('Iqra', '2003-12-22');
 
-INSERT INTO Posts
+INSERT INTO posts
 (post_title, post_caption, post_created_date, user_id)
 VALUES
     ('Learning Spring Boot',

@@ -1,9 +1,8 @@
 package org.learnspringframework.jobboard.repository;
 
-import org.learnspringframework.jobboard.Data.JobsPostings;
+import org.learnspringframework.jobboard.entities.JobsPostings;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface JobRepository extends JpaRepository<JobsPostings, Long> {

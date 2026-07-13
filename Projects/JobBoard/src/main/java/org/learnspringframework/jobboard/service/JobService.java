@@ -1,7 +1,7 @@
 package org.learnspringframework.jobboard.service;
 
 import jakarta.validation.Valid;
-import org.learnspringframework.jobboard.Data.JobsPostings;
+import org.learnspringframework.jobboard.entities.JobsPostings;
 import org.learnspringframework.jobboard.dtos.JobRequestDto;
 import org.learnspringframework.jobboard.dtos.JobResponseDTO;
 import org.learnspringframework.jobboard.exceptions.InvalidJobDataException;
