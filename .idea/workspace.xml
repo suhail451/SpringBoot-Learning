@@ -4,27 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f80ad0a9-c4a1-4b9b-9edb-57de63bc1601" name="Changes" comment="Added Post Methods To the users Posts and their end points">
-      <change afterPath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/controller/SkillsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/dtos/SkillsRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/dtos/SkillsResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/entities/Skills.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/exceptions/DuplicateSkillException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/exceptions/SkillsNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/repository/SkillRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/service/SkillsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="f80ad0a9-c4a1-4b9b-9edb-57de63bc1601" name="Changes" comment="Make A New Entity and Performs All the Main things Like := Skill: Entity + DTOs + Repository + Service + Controller + exceptions">
+      <change afterPath="$PROJECT_DIR$/restfull-web-services/src/main/java/org/learnspringframework/restfullwebservices/security/SpringSecurityConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/Data/JobsPostings.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/entities/JobsPostings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/controller/JobsPostingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/controller/JobsPostingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/exceptions/CustomizeResponseEntityExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/exceptions/CustomizeResponseEntityExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/repository/JobRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/repository/JobRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/service/JobService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/service/JobService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/storage/JobStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/Projects/JobBoard/src/main/java/org/learnspringframework/jobboard/storage/JobStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projects/JobBoard/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Projects/JobBoard/src/main/resources/schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/restfull-web-services/src/main/java/org/learnspringframework/restfullwebservices/controllers/UserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/restfull-web-services/src/main/java/org/learnspringframework/restfullwebservices/controllers/UserResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/restfull-web-services/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/restfull-web-services/src/main/resources/data.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,8 +29,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Exception" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -185,7 +167,7 @@
       </map>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.JobBoardApplication">
+  <component name="RunManager" selected="Spring Boot.RestfullWebServicesApplication">
     <configuration name="GameRunnerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="GameRunner" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.learnspringframework.gamerunner.GameRunnerApplication" />
@@ -273,7 +255,9 @@
       <workItem from="1783876043073" duration="908000" />
       <workItem from="1783923038127" duration="3339000" />
       <workItem from="1783956848622" duration="6858000" />
-      <workItem from="1783967170362" duration="4409000" />
+      <workItem from="1783967170362" duration="4555000" />
+      <workItem from="1784119257082" duration="6533000" />
+      <workItem from="1784134872295" duration="836000" />
     </task>
     <task id="LOCAL-00001" summary="Students And Their Certificate Management System By Hibernate ORM Tool">
       <option name="closed" value="true" />
@@ -507,7 +491,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783873689035</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Make A New Entity and Performs All the Main things Like := Skill: Entity + DTOs + Repository + Service + Controller + exceptions">
+      <option name="closed" value="true" />
+      <created>1783971693433</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1783971693433</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -525,7 +517,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Learn Dependancy Injection, Setter, Constructor and Field" />
     <MESSAGE value="Started SpringBoot and Make A Little Web Service for the Starting The REST API Development" />
     <MESSAGE value="i changed the PersonService" />
     <MESSAGE value="Remove Persons @Component Because Persons Model Doesn't need any @Component to perform there work" />
@@ -550,6 +541,7 @@
     <MESSAGE value="make the id Error perfect" />
     <MESSAGE value="transfer thw In memory database(Arraylist) into H2 Database.&#10;make Jobpostings as the Entity" />
     <MESSAGE value="Added Post Methods To the users Posts and their end points" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Post Methods To the users Posts and their end points" />
+    <MESSAGE value="Make A New Entity and Performs All the Main things Like := Skill: Entity + DTOs + Repository + Service + Controller + exceptions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Make A New Entity and Performs All the Main things Like := Skill: Entity + DTOs + Repository + Service + Controller + exceptions" />
   </component>
 </project>
